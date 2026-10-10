@@ -61,7 +61,7 @@ These fundamentals are important for understanding network communication and bui
 
 The topology connects the router, switches, client PCs, and network servers.
 
-![Network topology](01-topologia.png)
+![Network topology](TopologiaGit.png)
 
 ### 2. DHCP Configuration
 
