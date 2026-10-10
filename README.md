@@ -1,4 +1,4 @@
-# # Corporate Network Lab — Cisco Packet Tracer
+ # # Corporate Network Lab — Cisco Packet Tracer
 
 A corporate network simulation developed as part of my Computer Networks studies at Infnet.
 
@@ -44,7 +44,7 @@ Screenshots and test evidence are included in this repository.
 
 ## Project Files
 
-- `corporate-network.pkt` — Cisco Packet Tracer simulation.
+- `AtDeFundamentosDeRede.pkt` — Cisco Packet Tracer simulation.
 - Screenshots — Evidence of configurations and connectivity tests.
 
 ## Learning Outcomes
@@ -55,4 +55,58 @@ These fundamentals are important for understanding network communication and bui
 
 ---
 
-**Author:** Computer Networks student at Infnet
+**João Viana:** Computer Networks student at Infnet
+
+### 1. Network Topology
+
+The topology connects the router, switches, client PCs, and network servers.
+
+![Network topology](01-topologia.png)
+
+### 2. DHCP Configuration
+
+The DHCP server provides automatic IPv4 configuration to client devices.
+
+![DHCP configuration](02-dhcp.png)
+
+### 3. Client IP Configuration
+
+The client PCs obtain their network settings through DHCP.
+
+**PC-A**
+
+![PC-A IP configuration](03-ipconfig-pc-a.png)
+
+**PC-B**
+
+![PC-B IP configuration](04-ipconfig-pc-b.png)
+
+### 4. Switch Configuration
+
+SW-1 and SW-2 are configured with management IP addresses and basic access protection.
+
+![Switch configuration](05-switches.png)
+
+### 5. Router Configuration
+
+RT-RJ provides connectivity between the internal network and the HTTP server network.
+
+![Router configuration](06-router.png)
+
+### 6. DNS and HTTP Services
+
+The DNS record `at.infnet.com.br` resolves to the HTTP server address.
+
+![DNS and HTTP configuration](07-dns-http.png)
+
+### 7. Connectivity Tests
+
+Ping tests are used to validate communication between client PCs and the HTTP server.
+
+![Connectivity tests](08-testes.png)
+
+### 8. HTTP Access
+
+The client PCs access the web server using the configured DNS name.
+
+![HTTP browser tests](09-browser.png)
