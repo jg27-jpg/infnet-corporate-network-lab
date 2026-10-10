@@ -89,9 +89,9 @@ The subnet mask identifies which portion of an IPv4 address represents the netwo
 
 These checks confirmed that the client devices received their network configuration and were ready for connectivity testing.
 
-![PC-A IP Configuration](PingPCagit.png)
+![PC-A IP Configuration](ipconfigallPCA.png)
 
-![PC-B IP Configuration](PingPCB.png)
+![PC-B IP Configuration](ipconfigallPCB.png)
 
 ### 4. Switch Configuration
 
@@ -145,7 +145,9 @@ Connectivity was tested using the `ping` command to verify IP-level communicatio
 
 Successful ping responses indicate that ICMP echo requests and replies can traverse the network between the tested devices. These tests help validate addressing and connectivity, although they do not independently prove that every application service is working correctly.
 
-![Connectivity Tests]()
+![Connectivity Tests](PingPCagit.png)
+
+![Connectivity Tests](PingPCB.png)
 
 ### 9. Web Access Validation
 
