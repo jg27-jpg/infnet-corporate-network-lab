@@ -57,56 +57,102 @@ These fundamentals are important for understanding network communication and bui
 
 **João Viana:** Computer Networks student at Infnet
 
+## Implementation and Testing
+
 ### 1. Network Topology
 
-The topology connects the router, switches, client PCs, and network servers.
+The network topology was designed in Cisco Packet Tracer to simulate a corporate environment with client devices, switches, a router, and dedicated network servers.
 
-![Network topology](TopoligaGit.png)
+The switches provide connectivity between devices within the local network, while the router connects the internal network to a separate network containing the HTTP server. This design demonstrates how network devices work together to enable communication between clients and services.
 
-### 2. DHCP Configuration
+![Complete Network Topology](TopoligaGit.png)
 
-The DHCP server provides automatic IPv4 configuration to client devices.
+### 2. DHCP Server Configuration
 
-![DHCP configuration](02-dhcp.png)
+The DHCP (Dynamic Host Configuration Protocol) server was configured with the static IPv4 address 
+
+DHCP automatically assigns network configuration parameters to client devices, eliminating the need to configure each computer manually. The DHCP pool was configured to distribute IPv4 addresses and provide the appropriate subnet mask, default gateway, and DNS server address.
+
+In this lab, the default gateway allows clients to communicate with devices outside their local subnet, while the DNS server address allows them to resolve domain names into IP addresses.
+
+This configuration demonstrates how centralized address management simplifies network administration and reduces manual configuration errors.
+
+![DHCP Server Configuration](DHCPgit.png)
 
 ### 3. Client IP Configuration
 
-The client PCs obtain their network settings through DHCP.
+PC-A and PC-B were configured to obtain their IPv4 settings automatically through DHCP.
 
-**PC-A**
+The `ipconfig /all` command was used to verify the assigned IP addresses, subnet mask, default gateway, and DNS server.
 
-![PC-A IP configuration](03-ipconfig-pc-a.png)
+The subnet mask identifies which portion of an IPv4 address represents the network and which portion identifies the host. The default gateway provides the next hop for traffic destined for other networks, and the DNS server resolves domain names into IP addresses.
 
-**PC-B**
+These checks confirmed that the client devices received their network configuration and were ready for connectivity testing.
 
-![PC-B IP configuration](04-ipconfig-pc-b.png)
+![PC-A IP Configuration](PingPCagit.png)
+
+![PC-B IP Configuration](PingPCB.png)
 
 ### 4. Switch Configuration
 
-SW-1 and SW-2 are configured with management IP addresses and basic access protection.
+SW-1 and SW-2 were configured using Cisco IOS commands. Their management interfaces were assigned static IPv4 addresses on VLAN 1, allowing the switches to be identified and accessed for management within the lab network.
 
-![Switch configuration](05-switches.png)
+The configuration also included device hostnames, passwords, encrypted password settings, and login banners.
+
+Switches operate primarily at Layer 2, forwarding Ethernet frames based on MAC addresses. Their role in this topology is to provide local connectivity between network devices.
+
+![Switch 1 Configuration](switch1gitconfig.png)
+![Switch 2 Configuration](Switch2config.png)
+![Switch Banner Configuration](BannerConfiguradoNosSwitches.png)
 
 ### 5. Router Configuration
 
-RT-RJ provides connectivity between the internal network and the HTTP server network.
+The RT-RJ router was configured with two IPv4 interfaces:
 
-![Router configuration](06-router.png)
+- **G0/0 —  Connects to the internal network and serves as the default gateway for client devices.
+- **G0/1 —  Connects to the separate network containing the HTTP server.
 
-### 6. DNS and HTTP Services
+The router enables communication between different IP networks by forwarding packets according to its routing table. When a client sends traffic to a destination outside its local subnet, the packet is forwarded to the default gateway for routing.
 
-The DNS record `at.infnet.com.br` resolves to the HTTP server address.
+The router was also configured with basic device identification and security settings through Cisco IOS.
 
-![DNS and HTTP configuration](07-dns-http.png)
+![Router Configuration](RTConfiggit.png)
 
-### 7. Connectivity Tests
+### 6. HTTP Server Configuration
 
-Ping tests are used to validate communication between client PCs and the HTTP server.
+The HTTP server was assigned the static IPv4 address `200.200.200.202/30` and configured to provide a web service.
 
-![Connectivity tests](08-testes.png)
+HTTP was enabled so that client devices could access the hosted web page through a browser. The server is located on a different IP network from the clients, allowing the lab to demonstrate communication through the router rather than only within the local network.
 
-### 8. HTTP Access
+![HTTP Server Configuration](ConfigHTTPgit.png)
 
-The client PCs access the web server using the configured DNS name.
+### 7. DNS Server Configuration
 
-![HTTP browser tests](09-browser.png)
+The DNS server was assigned the static IPv4 address `192.168.1.101/24`.
+
+DNS (Domain Name System) translates human-readable domain names into IP addresses. An A record was created for `at.infnet.com.br`, pointing to the HTTP server at `200.200.200.202`.
+
+This allows clients to access the web service using a domain name instead of having to remember the server's IP address.
+
+DNS and HTTP serve different purposes: DNS resolves the name to an IP address, while HTTP is used to request and deliver the web content.
+
+![DNS Server Configuration](configDNSgit.png)
+![DNS Site Configuration](SiteDNSgit.png)
+
+### 8. Connectivity Testing
+
+Connectivity was tested using the `ping` command to verify IP-level communication between the client devices and the relevant network destinations.
+
+Successful ping responses indicate that ICMP echo requests and replies can traverse the network between the tested devices. These tests help validate addressing and connectivity, although they do not independently prove that every application service is working correctly.
+
+![Connectivity Tests]()
+
+### 9. Web Access Validation
+
+Finally, the domain `at.infnet.com.br` was entered into the web browser on both client PCs.
+
+Successful access to the hosted page validated the interaction between multiple network components: DHCP provided client addressing, DNS resolved the domain name, and the router forwarded traffic to the HTTP server on the separate network.
+
+This end-to-end test demonstrated that the configured network services worked together to provide access to an application hosted outside the clients' local subnet.
+
+![Web Access from Client PCs](SitePCA.png)
